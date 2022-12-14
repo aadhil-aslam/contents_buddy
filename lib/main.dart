@@ -137,12 +137,6 @@ class _MyHomePageState extends State<MyHomePage> {
                   // Icons.home :
                   Icons.search),
               onPressed: () {
-                // Navigator.of(context, rootNavigator: true).push(
-                //   new CupertinoPageRoute<bool>(
-                //     fullscreenDialog: false,
-                //     builder: (BuildContext context) => new SearchBar(),
-                //   ),
-                // );
                 Navigator.push(
                     context,
                     PageTransition(
@@ -151,18 +145,11 @@ class _MyHomePageState extends State<MyHomePage> {
                         isIos: true,
                         reverseDuration: Duration(milliseconds: 150),
                         child: SearchBar()));
-
-                // showSearch(context: context, delegate: ContactSearch());
-                // Navigator.push(context,
-                //     MaterialPageRoute(builder: (context) => SearchBar()));
               },
             ),
           ),
         ],
       ),
-      // appBar: AppBar(
-      //   title: const Text("Contents Buddy"),
-      // ),
       body: _contactList!.isNotEmpty
           ? Column(
               children: [
@@ -219,10 +206,8 @@ class _MyHomePageState extends State<MyHomePage> {
                             : ""),
                         trailing: PopupMenuButton<int>(
                           itemBuilder: (context) => [
-                            // PopupMenuItem 1
                             PopupMenuItem(
                               value: 1,
-                              // row with 2 children
                               child: Row(
                                 children: [
                                   Icon(Icons.edit),
@@ -233,10 +218,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                 ],
                               ),
                             ),
-                            // PopupMenuItem 2
                             PopupMenuItem(
                               value: 2,
-                              // row with two children
                               child: Row(
                                 children: [
                                   Icon(Icons.delete),
@@ -251,9 +234,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           offset: Offset(0, 50),
                           color: Colors.white,
                           elevation: 2,
-                          // on selected we show the dialog box
                           onSelected: (value) {
-                            // if value 1 show dialog
                             if (value == 1) {
                               Navigator.push(
                                   context,
@@ -269,7 +250,6 @@ class _MyHomePageState extends State<MyHomePage> {
                                       }
                                   });
                               ;
-                              // if value 2 show dialog
                             } else if (value == 2) {
                               _deleteFromDialog(
                                   context, _contactList![index].id);
@@ -289,17 +269,19 @@ class _MyHomePageState extends State<MyHomePage> {
               child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(Icons.contact_page_outlined, size: 150, color:Colors.blueGrey[200],),
-                SizedBox(height: 50,),
+                Icon(
+                  Icons.contact_page_outlined,
+                  size: 150,
+                  color: Colors.blueGrey[200],
+                ),
+                SizedBox(
+                  height: 50,
+                ),
                 Text("No contacts\n",
                     style: TextStyle(color: Colors.black, fontSize: 15)),
                 RichText(
-                  //textAlign: TextAlign.center,
                   text: const TextSpan(
                     children: [
-                      // TextSpan(
-                      //     text: "No contacts\n",
-                      //     style: TextStyle(color: Colors.black, fontSize: 15)),
                       TextSpan(
                           text: "Click ",
                           style: TextStyle(color: Colors.black, fontSize: 15)),
@@ -314,13 +296,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ),
               ],
-            )
-              //   Text(
-              //   "No contacts\nPress  +  to add",
-              //   style: TextStyle(fontSize: 16),
-              //   textAlign: TextAlign.center,
-              // )
-              ),
+            )),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.push(context,

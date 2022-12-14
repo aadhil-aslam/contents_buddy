@@ -34,8 +34,6 @@ class _EditContactState extends State<EditContact> {
 
     setState(() {
       ImagePath = saveImagePath.path;
-
-      print(ImagePath);
       imageEdited = true;
     });
   }
@@ -52,8 +50,6 @@ class _EditContactState extends State<EditContact> {
 
     setState(() {
       ImagePath = saveImagePath.path;
-
-      print(ImagePath);
       imageEdited = true;
     });
   }
@@ -188,7 +184,6 @@ class _EditContactState extends State<EditContact> {
                                 },
                               ),
                             );
-                            // set up the SimpleDialog
                             SimpleDialog dialog = SimpleDialog(
                               title: const Text('Change photo'),
                               children: <Widget>[
@@ -197,66 +192,19 @@ class _EditContactState extends State<EditContact> {
                                 optionThree,
                               ],
                             );
-
-                            // show the dialog
                             showDialog(
                               context: context,
                               builder: (BuildContext context) {
                                 return dialog;
                               },
                             );
-                          }
-
-                          // showDialog(
-                          //     context: context,
-                          //     builder: (parm) {
-                          //       return AlertDialog(
-                          //         title: const Text(
-                          //           'Change profile photo',
-                          //           style: TextStyle(
-                          //               color: Colors.blueGrey, fontSize: 18),
-                          //         ),
-                          //         actions: [
-                          //           TextButton(
-                          //               style: TextButton.styleFrom(
-                          //                 foregroundColor: Colors.white,
-                          //                 backgroundColor: Colors.red,
-                          //               ),
-                          //               onPressed: () {
-                          //                 setState(() {
-                          //                   _image = null;
-                          //                   widget.contact.photo = "";
-                          //                   ImagePath = widget.contact.photo;
-                          //                   Navigator.pop(context);
-                          //                 });
-                          //               },
-                          //               child: const Text('Delete')),
-                          //           TextButton(
-                          //               style: TextButton.styleFrom(
-                          //                 foregroundColor: Colors.white,
-                          //                 backgroundColor: Colors.blueGrey,
-                          //               ),
-                          //               onPressed: () {
-                          //                 Navigator.pop(context);
-                          //                 _getImage();
-                          //               },
-                          //               child: const Text('Edit'))
-                          //         ],
-                          //       );
-                          //     });
-                          // },
-                          ),
+                          }),
                     ),
                   ),
                 ],
               ),
               const SizedBox(
                 height: 40.0,
-              ),
-              Row(
-                children: const [
-                  //Icon(Icons.person),
-                ],
               ),
               TextField(
                   controller: _contactNameController,
@@ -304,7 +252,6 @@ class _EditContactState extends State<EditContact> {
                     border: const OutlineInputBorder(),
                     hintText: 'Enter Email',
                     labelText: 'Email',
-                    //errorText: _validateEmail ? 'Email Can\'t Be Empty' : null,
                   )),
               const SizedBox(
                 height: 10.0,
@@ -322,12 +269,8 @@ class _EditContactState extends State<EditContact> {
                             _contactNumberController.text.isEmpty
                                 ? _validateNumber = true
                                 : _validateNumber = false;
-                            // _contactEmailController.text.isEmpty
-                            //     ? _validateEmail = true
-                            //     : _validateEmail = false;
                           });
                           if (_validateNumber == false
-                              // && _validateEmail == false
                               ) {
                             //InsertContacts
                             var _contact = Contact();
@@ -340,7 +283,6 @@ class _EditContactState extends State<EditContact> {
                             var result =
                                 await _contactCommunication.UpdateContact(
                                     _contact);
-                            //Navigator.of(context, result).popUntil((route) => route.isFirst);
                             Navigator.pop(context, result);
                           }
                         },

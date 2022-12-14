@@ -147,7 +147,6 @@ class _AddContactState extends State<AddContact> {
                                 },
                               ),
                             );
-                            // set up the SimpleDialog
                             SimpleDialog dialog = SimpleDialog(
                               title: const Text('Change photo'),
                               children: <Widget>[
@@ -155,8 +154,6 @@ class _AddContactState extends State<AddContact> {
                                 optionTwo,
                               ],
                             );
-
-                            // show the dialog
                             showDialog(
                               context: context,
                               builder: (BuildContext context) {
@@ -171,11 +168,6 @@ class _AddContactState extends State<AddContact> {
               const SizedBox(
                 height: 50.0,
               ),
-              Row(
-                children: const [
-                  //Icon(Icons.person),
-                ],
-              ),
               TextField(
                   controller: _contactNameController,
                   decoration: InputDecoration(
@@ -186,13 +178,6 @@ class _AddContactState extends State<AddContact> {
                     hintText: 'Enter Name',
                     labelText: 'Name',
                     prefixIcon: const Icon(Icons.person),
-                    // suffixIcon: IconButton(
-                    //   icon: Icon(Icons.clear),
-                    //   onPressed: () {
-                    //     _contactNameController.clear();
-                    //   },
-                    // ),
-                    //errorText: _validateName ? 'Name Can\'t Be Empty' : null,
                   )),
               const SizedBox(
                 height: 18.0,
@@ -212,12 +197,6 @@ class _AddContactState extends State<AddContact> {
                           hintText: 'Enter Number',
                           labelText: 'Number',
                           prefixIcon: const Icon(Icons.phone),
-                          // suffixIcon: IconButton(
-                          //   icon: Icon(Icons.clear),
-                          //   onPressed: () {
-                          //     _contactNumberController.clear();
-                          //   },
-                          // ),
                           errorText:
                               _validateNumber ? 'Number Can\'t Be Empty' : null,
                         )),
@@ -242,9 +221,6 @@ class _AddContactState extends State<AddContact> {
                         )
                 ],
               ),
-              // const SizedBox(
-              //   height: 18.0,
-              // ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 10.0),
                 child: Visibility(
@@ -261,58 +237,21 @@ class _AddContactState extends State<AddContact> {
                       labelText: "Number",
                       hintText: 'Enter Number',
                       prefixIcon: const Icon(Icons.phone_android),
-                      // suffixIcon: IconButton(
-                      //   icon: Icon(Icons.clear),
-                      //   onPressed: () {
-                      //     _extraNumberController.clear();
-                      //   },
-                      // ),
                     ),
                   ),
                 ),
               ),
-
-              // Column(
-              //   children: [
-              //     for(int i = 0 ; i < numberOfTextFields ; i++)
-              //       Padding(
-              //         padding: const EdgeInsets.only(bottom: 15.0),
-              //         child: TextField(
-              //             controller: _extraNumberController,
-              //             //textInputAction: TextInputAction.next,
-              //             decoration: InputDecoration(
-              //               //filled: true,
-              //               fillColor: const Color(0xFFFFFFFF),
-              //               isDense: true,
-              //               border: const OutlineInputBorder(),
-              //               hintText: 'Enter Number',
-              //               labelText: 'Number',
-              //             )),
-              //       )
-              //   ],
-              // ),
-
               TextField(
                   controller: _contactEmailController,
                   decoration: InputDecoration(
-
                     //filled: true,
                     fillColor: const Color(0xFFFFFFFF),
                     isDense: true,
                     border: OutlineInputBorder(),
                     hintText: 'Enter Email',
                     labelText: 'Email',
-                      prefixIcon: const Icon(Icons.email),
-                      // suffixIcon: IconButton(
-                      //   icon: Icon(Icons.clear),
-                      //   onPressed: () {
-                      //     _contactEmailController.clear();
-                      //   },
-                      // ),
+                    prefixIcon: const Icon(Icons.email),
                   )),
-              // const SizedBox(
-              //   height: 18.0,
-              // ),
               const SizedBox(
                 height: 10.0,
               ),
@@ -326,16 +265,11 @@ class _AddContactState extends State<AddContact> {
                             textStyle: const TextStyle(fontSize: 15)),
                         onPressed: () async {
                           setState(() {
-                            // _contactNameController.text.isEmpty
-                            //     ? _validateName = true
-                            //     : _validateName = false;
                             _contactNumberController.text.isEmpty
                                 ? _validateNumber = true
                                 : _validateNumber = false;
                           });
-                          if (
-                              //_validateName == false &&
-                              _validateNumber == false) {
+                          if (_validateNumber == false) {
                             //InsertContacts
                             var _contact = Contact();
                             _contact.name = _contactNameController.text;
@@ -343,8 +277,8 @@ class _AddContactState extends State<AddContact> {
                             _contact.extranumber = _extraNumberController.text;
                             _contact.email = _contactEmailController.text;
                             _contact.photo = ImagePath ?? "";
-                            var result =
-                                await _contactCommunication.saveContact(_contact);
+                            var result = await _contactCommunication
+                                .saveContact(_contact);
                             Navigator.pop(context, result);
                           }
                         },

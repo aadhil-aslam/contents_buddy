@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:contents_buddy/main.dart';
 import 'package:flutter/material.dart';
 import '../db_helper/db_communication.dart';
@@ -43,7 +42,7 @@ class _ViewContactState extends State<ViewContact> {
     );
   }
 
-  _deleteFromDialog(BuildContext context, contactId) {
+  _delete(BuildContext context, contactId) {
     return showDialog(
         context: context,
         builder: (parm) {
@@ -56,7 +55,6 @@ class _ViewContactState extends State<ViewContact> {
               TextButton(
                   style: TextButton.styleFrom(
                     foregroundColor: Colors.blueGrey,
-                    //backgroundColor: Colors.blueGrey,
                   ),
                   onPressed: () {
                     Navigator.pop(context);
@@ -65,13 +63,11 @@ class _ViewContactState extends State<ViewContact> {
               TextButton(
                   style: TextButton.styleFrom(
                     foregroundColor: Colors.red,
-                    //backgroundColor: Colors.red,
                   ),
                   onPressed: () async {
                     var result =
                         await _dbCommunication.deleteContact(contactId);
                     if (result != null) {
-                      //Navigator.of(context).popUntil((route) => route.isFirst);
                       Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -155,7 +151,6 @@ class _ViewContactState extends State<ViewContact> {
                                   MaterialPageRoute(
                                       builder: (context) => MyHomePage()))
                               .then((_) {
-                            // This method gets callback after your SecondScreen is popped from the stack or finished.
                             getAllContactDetails();
                           }),
                           _showSuccessSnackbar(
@@ -165,7 +160,7 @@ class _ViewContactState extends State<ViewContact> {
                 ;
                 // if value 2 show dialog
               } else if (value == 2) {
-                _deleteFromDialog(context, widget.contact.id);
+                _delete(context, widget.contact.id);
               }
             },
           ),
@@ -184,7 +179,6 @@ class _ViewContactState extends State<ViewContact> {
                 width: 160,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  //border: Border.all(width: 1, color: Colors.blueGrey)
                 ),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(100.0),
@@ -281,20 +275,6 @@ class _ViewContactState extends State<ViewContact> {
                       indent: 1.0,
                     )
                   : SizedBox.shrink(),
-              // ListTile(
-              //   leading: Column(
-              //     mainAxisAlignment: MainAxisAlignment.center,
-              //     children: const <Widget>[
-              //       Icon(Icons.link, color: Colors.blueGrey,size: 30,),
-              //     ],
-              //   ),
-              //   title: widget.contact.photo != null
-              //       ? Text(widget.contact.photo??'') : Text("null"),
-              // )
-              // ,const Divider(
-              //   height: 1.0,
-              //   indent: 1.0,
-              // ),
               const SizedBox(
                 height: 20.0,
               ),
